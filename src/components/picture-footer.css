@@ -1,0 +1,14 @@
+.picture-footer {
+  padding: 10px;
+}
+
+.picture-footer__like {
+  height: 30px;
+  padding-right: 10px;
+  opacity: 0.8;
+}
+
+.picture-footer__comment {
+  height: 30px;
+  opacity: 0.8;
+}

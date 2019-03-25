@@ -1,0 +1,9 @@
+.picture {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.0975);
+}
+
+.picture__image {
+  width: 100%;
+}

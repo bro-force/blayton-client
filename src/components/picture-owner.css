@@ -1,0 +1,18 @@
+.picture-owner {
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.picture-owner__image {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.picture-owner__name {
+  margin-left: 10px;
+}
