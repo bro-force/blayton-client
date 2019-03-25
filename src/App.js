@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import Header from './components/header'
-import Picture from './components/picture'
+import { Router, Link } from '@reach/router'
+
+import Feed from './pages/feed'
+import Login from './pages/login'
 
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Header />
-        <div className="container">
-          <Picture />
-        </div>
-      </div>
-    );
+      <Router>
+        <Feed path="/" />
+        <Login path="/login" />
+      </Router>
+    )
   }
 }
 
-export default App;
+export default App
