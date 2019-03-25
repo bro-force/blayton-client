@@ -1,10 +1,26 @@
 import React from 'react'
 
+import { useStateValue } from '../state-provider'
+
 import './header.css'
 import logo from '../assets/logo.svg'
 import add from '../assets/add.svg'
 
 function Header(props) {
+  const [ state, dispatch ] = useStateValue()
+
+  const onFileSelected = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader()
+
+      reader.onload = function (e) {
+        dispatch({ type: 'GOT_IMAGE', payload: e.target.result })
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
   return (
     <header className="header">
       <div className="header__logo">
@@ -24,8 +40,10 @@ function Header(props) {
           <input
             id="uploader"
             className="header__uploader"
-            accept="image/*;capture=camera"
+            accept="image/*"
+            onChange={onFileSelected}
             type="file"
+            capture
           />
         </label>
       </div>

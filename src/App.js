@@ -33,6 +33,11 @@ function reducer(state, action) {
         coords: action.payload,
         distance: distance(eventCoords, action.payload)
       }
+    case 'GOT_IMAGE':
+      return {
+        ...state,
+        imageToUpload: action.payload
+      }
     default:
       return state
   }

@@ -28,7 +28,7 @@ function Feed(props) {
     <div className="feed">
       <Header />
       <div className="container">
-        <Picture />
+        <Picture image={state.imageToUpload} />
       </div>
     </div>
   )
