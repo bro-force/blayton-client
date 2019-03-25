@@ -16,7 +16,7 @@ function ImageFilterPreview(props) {
     <section className="filter-preview">
       <div
         className="filter-preview__selected"
-        style={{ backgroundImage: `url(${state.finalImage})`}}
+        style={{ backgroundImage: `url(${state.finalImage})` }}
       >
       </div>
 
@@ -28,12 +28,12 @@ function ImageFilterPreview(props) {
           onSelect={onSelect}
         />
 
-        {/* <Filter */}
-        {/*   image={state.croppedImage} */}
-        {/*   name="Clarendon" */}
-        {/*   filter="clarendon" */}
-        {/*   onSelect={onSelect} */}
-        {/* /> */}
+        <Filter
+          image={state.croppedImage}
+          name="Clarendon"
+          filter="clarendon"
+          onSelect={onSelect}
+        />
 
         <Filter
           image={state.croppedImage}
