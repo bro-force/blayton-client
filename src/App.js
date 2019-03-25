@@ -22,10 +22,9 @@ const initialState = {
   eventCoords,
   distance: null,
   croppedImage: null,
-  uploadStep: 0
+  uploadStep: 0,
+  feed: []
 }
-
-console.log(initialState)
 
 function reducer(state, action) {
   switch(action.type) {
@@ -73,6 +72,8 @@ function reducer(state, action) {
       }
     case 'GOT_FINAL_IMAGE':
       return { ...state, finalImage: action.payload }
+    case 'GOT_FEED':
+      return { ...state, feed: action.payload }
     default:
       return state
   }

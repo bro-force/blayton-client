@@ -6,10 +6,10 @@ function PictureOwner(props) {
   return (
     <div className="picture-owner">
       <img
-        src="https://avatars3.githubusercontent.com/u/9627967?s=460&v=4"
+        src={props.photo}
         className="picture-owner__image"
       />
-      <h4 className="picture-owner__name">Clayton</h4>
+      <h4 className="picture-owner__name">{ props.name }</h4>
     </div>
   )
 }

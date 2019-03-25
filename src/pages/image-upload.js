@@ -40,6 +40,7 @@ function ImageUpload(props) {
 
     uploadTask.on('state_changed', console.log, null, () => {
       const payload = {
+        id: postId,
         userId: state.user.uid,
         displayName: state.user.displayName,
         userPhoto: state.user.photoURL,

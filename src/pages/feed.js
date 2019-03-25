@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { navigate } from '@reach/router'
 
 import { useStateValue } from '../state-provider'
+import firebase, { storageRef, database } from '../firebase'
 
 import Header from '../components/header'
 import Picture from '../components/picture'
@@ -25,13 +26,25 @@ function Feed(props) {
     window.navigator.geolocation.getCurrentPosition(({ coords }) => {
       dispatch({ type: 'GOT_COORDS', payload: coords })
     })
+
+    database.ref('feed').once('value', function(snapshot) {
+      if (snapshot.val()) {
+        const items = Object.values(snapshot.val())
+        dispatch({ type: 'GOT_FEED', payload: items })
+      }
+    })
   }, [])
 
   return (
     <div className="feed">
       <Header />
       <div className="container">
-        <Picture />
+        { state.feed.map(item => (
+          <Picture
+            key={item.id}
+            {...item}
+          />
+        ))}
       </div>
 
       { state.imageToUpload && (

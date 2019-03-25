@@ -1,14 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+import { storageRef } from '../firebase'
 
 import PictureOwner from './picture-owner'
 import PictureFooter from './picture-footer'
 
 import './picture.css'
 
-function Picture({ image = 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80'}) {
+function Picture(props) {
+  const [ image, setImage ] = useState('')
+
+  useEffect(() => {
+    storageRef
+      .child(props.image)
+      .getDownloadURL()
+      .then(setImage)
+  }, [])
+
   return (
     <div className="picture">
-      <PictureOwner />
+      <PictureOwner
+        photo={props.userPhoto}
+        name={props.displayName}
+      />
 
       <img
         src={image}
