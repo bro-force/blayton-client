@@ -21,6 +21,8 @@ const initialState = {
   coords: {},
   eventCoords,
   distance: null,
+  croppedImage: null,
+  uploadStep: 0
 }
 
 function reducer(state, action) {
@@ -36,8 +38,39 @@ function reducer(state, action) {
     case 'GOT_IMAGE':
       return {
         ...state,
-        imageToUpload: action.payload
+        imageToUpload: action.payload,
+        uploadStep: 1
       }
+    case 'GOT_CROPPED_AREA_PIXELS':
+      return { ...state, croppedAreaPixels: action.payload }
+    case 'GOT_CROPPED_IMAGE':
+      return {
+        ...state,
+        croppedImage: action.payload,
+        finalImage: action.payload
+      }
+    case 'CANCEL_UPLOAD':
+      return {
+        ...state,
+        uploadStep: 0,
+        imageToUpload: null,
+        croppedImage: null,
+        croppedAreaPixels: null
+      }
+    case 'NEXT_UPLOAD_STEP':
+      return { ...state, uploadStep: state.uploadStep + 1 }
+    case 'PREVIOUS_UPLOAD_STEP':
+      return { ...state, uploadStep: state.uploadStep - 1 }
+    case 'COMPLETE_UPLOAD':
+      return {
+        ...state,
+        uploadStep: 0,
+        imageToUpload: null,
+        croppedImage: null,
+        croppedAreaPixels: null
+      }
+    case 'GOT_FINAL_IMAGE':
+      return { ...state, finalImage: action.payload }
     default:
       return state
   }

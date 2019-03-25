@@ -2,21 +2,22 @@ import React, { useState, useCallback } from 'react'
 
 import Cropper from 'react-easy-crop'
 
+import { useStateValue } from '../state-provider'
 import getCroppedImg from '../helpers/create-image'
 import './image-preview.css'
 
 function ImagePreview(props) {
+  const [ state, dispatch ] = useStateValue()
+
   const [ zoom, setZoom ] = useState(1)
   const [ crop, setCrop ] = useState({ x: 0, y: 0 })
-  const [ pixelCrop, setPixelCrop ] = useState()
 
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    setPixelCrop(croppedAreaPixels)
+  const onCropComplete = useCallback(async (croppedArea, croppedAreaPixels) => {
+    const base64 = await getCroppedImg(props.image, croppedAreaPixels)
+
+    dispatch({ type: 'GOT_CROPPED_AREA_PIXELS', payload: croppedAreaPixels })
+    dispatch({ type: 'GOT_CROPPED_IMAGE', payload: base64 })
   }, [ zoom, crop ])
-
-  const onComplete = useCallback(async (event) => {
-    const base64 = await getCroppedImg(props.image, pixelCrop)
-  }, [ pixelCrop ])
 
   return (
     <section
