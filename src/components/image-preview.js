@@ -28,7 +28,7 @@ function ImagePreview(props) {
           image={props.image}
           crop={crop}
           zoom={zoom}
-          aspect={4 / 3}
+          aspect={0.95}
           onCropChange={setCrop}
           onCropComplete={onCropComplete}
           onZoomChange={setZoom}

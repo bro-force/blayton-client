@@ -16,7 +16,9 @@
     "react-imgpro": "^1.4.1",
     "react-multimedia-capture": "^1.2.3",
     "react-scripts": "2.1.8",
-    "react-spinkit": "^3.0.0"
+    "react-slick": "^0.23.2",
+    "react-spinkit": "^3.0.0",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

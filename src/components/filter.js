@@ -6,20 +6,21 @@ import classNames from 'classnames'
 
 function Filter({
   name,
+  image,
   normal = false,
   filter = 'valencia',
   ...props
 }) {
   const [ loading, setLoading ] = useState(!normal)
-  const [ processedImage, setProcessedImage ] = useState()
+  const [ processedImage, setProcessedImage ] = useState(image)
 
   const handleSelect = useCallback(() => {
-    props.onSelect(processedImage || props.image)
+    props.onSelect(processedImage || image)
   }, [ processedImage ])
 
   useEffect(() => {
     const img = new Image()
-    img.src = props.image
+    img.src = image
 
     const imageWithFilter = window.filterous.importImage(img)
       .applyInstaFilter(filter)

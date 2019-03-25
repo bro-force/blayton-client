@@ -3,7 +3,7 @@
 }
 
 .filter-preview__selected img {
-  width: 80vw !important;
+  width: 100vw !important;
   max-width: 700px;
   height: auto !important;
 }
@@ -14,9 +14,13 @@
 }
 
 .filter-preview__filters {
+  height: 180px;
   display: flex;
   max-width: 700px;
+  align-items: center;
   margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .filter-preview__filter {
@@ -36,9 +40,9 @@
 }
 
 .filter-preview__filter img {
-  width: calc(20vw - 7.5px) !important;
+  width: calc(25vw - 7.5px) !important;
   max-width: 167px;
-  height: 100% !important;
+  height: auto !important;
 }
 
 .filter-preview__image-wrapper {

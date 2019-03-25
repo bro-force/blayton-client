@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react'
 
 import Filter from '../components/filter'
-
 import { useStateValue } from '../state-provider'
 
 import './image-filter-preview.css'
@@ -24,6 +23,27 @@ function ImageFilterPreview(props) {
           image={state.croppedImage}
           name="Normal"
           filter="normal"
+          onSelect={onSelect}
+        />
+
+        <Filter
+          image={state.croppedImage}
+          name="Clarendon"
+          filter="clarendon"
+          onSelect={onSelect}
+        />
+
+        <Filter
+          image={state.croppedImage}
+          name="Juno"
+          filter="juno"
+          onSelect={onSelect}
+        />
+
+        <Filter
+          image={state.croppedImage}
+          name="Lark"
+          filter="lark"
           onSelect={onSelect}
         />
 
