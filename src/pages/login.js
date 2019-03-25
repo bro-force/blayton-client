@@ -1,9 +1,25 @@
 import React from 'react'
 
+import { navigate } from '@reach/router'
+
+import { useStateValue } from '../state-provider'
+import firebase, { githubProvider } from '../firebase'
+
 import logo from '../assets/logo.svg'
 import './login.css'
 
+
 function Login(props) {
+  const [ state, dispatch ] = useStateValue()
+
+  const loginWithGithub = () => {
+    firebase.auth().signInWithPopup(githubProvider)
+      .then(result => {
+        dispatch({ type: 'GOT_USER', payload: result.user })
+        navigate('/')
+      })
+  }
+
   return (
     <section className="login">
       <div className="login__content">
@@ -27,7 +43,10 @@ function Login(props) {
             Entrar com Facebook
           </button>
 
-          <button className="button">
+          <button
+            className="button"
+            onClick={loginWithGithub}
+          >
             Entrar com Github
           </button>
         </div>
