@@ -19,7 +19,15 @@ function Header(props) {
       </div>
 
       <div className="header__new">
-        <img src={add} className="header__add-icon" />
+        <label htmlFor="uploader">
+          <img src={add} className="header__add-icon" />
+          <input
+            id="uploader"
+            className="header__uploader"
+            accept="image/*;capture=camera"
+            type="file"
+          />
+        </label>
       </div>
     </header>
   )

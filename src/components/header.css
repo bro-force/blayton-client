@@ -44,3 +44,9 @@
   margin-top: 5px;
   opacity: 0.8;
 }
+
+.header__uploader {
+  transform: scale(0);
+  position: absolute;
+  top: -1000px;
+}

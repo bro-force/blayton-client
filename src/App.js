@@ -20,7 +20,7 @@ const initialState = {
   geolocationSupport: window.navigator.geolocation !== null,
   coords: {},
   eventCoords,
-  distance: null
+  distance: null,
 }
 
 function reducer(state, action) {
