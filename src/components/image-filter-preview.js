@@ -18,33 +18,6 @@ function ImageFilterPreview(props) {
       <div className="filter-preview__selected">
         <img src={state.finalImage} />
       </div>
-      <div className="filter-preview__filters">
-        <Filter
-          image={props.image}
-          name="Normal"
-          normal
-          onSelect={onSelect}
-        />
-
-        <Filter
-          image={props.image}
-          colors={{
-            mix: {
-              color: 'mistyrose',
-              amount: 10
-            }
-          }}
-          name="Mistyrose"
-          onSelect={onSelect}
-        />
-
-        <Filter
-          name="Sépia"
-          image={props.image}
-          sepia={true}
-          onSelect={onSelect}
-        />
-      </div>
     </section>
   )
 }
