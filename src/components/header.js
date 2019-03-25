@@ -27,7 +27,7 @@ function Header(props) {
               loadImage.scale(img, {
                 orientation: orientation || 0,
                 canvas: true,
-                maxWidth: 800
+                maxWidth: 3000
               })
 
             const dataUrl = canvas.toDataURL('image/jpg')
