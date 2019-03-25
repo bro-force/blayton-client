@@ -18,6 +18,12 @@ function Feed(props) {
     }
   }, [ state.user ])
 
+  useEffect(() => {
+    window.navigator.geolocation.getCurrentPosition(({ coords }) => {
+      dispatch({ type: 'GOT_COORDS', payload: coords })
+    })
+  }, [])
+
   return (
     <div className="feed">
       <Header />
