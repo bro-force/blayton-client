@@ -44,6 +44,7 @@
 .filter-preview__image-wrapper {
   position: relative;
   background-color: black;
+  height: 15vw;
 }
 
 .filter-preview__image-wrapper--loading img {

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 
 import ProcessImage from 'react-imgpro'
 import Spinner from 'react-spinkit'
@@ -7,6 +7,7 @@ import classNames from 'classnames'
 function Filter({
   name,
   normal = false,
+  filter = 'valencia',
   ...props
 }) {
   const [ loading, setLoading ] = useState(!normal)
@@ -15,6 +16,18 @@ function Filter({
   const handleSelect = useCallback(() => {
     props.onSelect(processedImage || props.image)
   }, [ processedImage ])
+
+  useEffect(() => {
+    const img = new Image()
+    img.src = props.image
+
+    const imageWithFilter = window.filterous.importImage(img)
+      .applyInstaFilter(filter)
+
+    const dataUrl = imageWithFilter.canvas.toDataURL(img.type)
+
+    setProcessedImage(dataUrl)
+  }, [])
 
   return (
     <div
@@ -28,29 +41,9 @@ function Filter({
       <div
         className={classNames({
           "filter-preview__image-wrapper": true,
-          "filter-preview__image-wrapper--loading": loading
         })}
       >
-        { loading && (
-          <Spinner
-            name="circle"
-            color="white"
-            fadeIn={0}
-          />
-        )}
-
-        { normal
-            ? <img src={props.image} />
-            : (
-              <ProcessImage
-                processedImage={(src, err) => {
-                  setLoading(false)
-                  setProcessedImage(src)
-                }}
-                {...props}
-              />
-            )
-        }
+        <img src={processedImage} />
       </div>
     </div>
   )

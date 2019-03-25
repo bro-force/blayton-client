@@ -22,8 +22,22 @@ function ImageFilterPreview(props) {
       <div className="filter-preview__filters">
         <Filter
           image={state.croppedImage}
-          sepia
-          name="Sépia"
+          name="Normal"
+          filter="normal"
+          onSelect={onSelect}
+        />
+
+        <Filter
+          image={state.croppedImage}
+          name="Valência"
+          filter="valencia"
+          onSelect={onSelect}
+        />
+
+        <Filter
+          image={state.croppedImage}
+          name="Brooklyn"
+          filter="brooklyn"
           onSelect={onSelect}
         />
       </div>
