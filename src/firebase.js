@@ -17,3 +17,5 @@ export const database = firebase.database()
 
 export const githubProvider = new firebase.auth.GithubAuthProvider()
 githubProvider.addScope('user')
+
+export const storageRef = firebase.storage().ref()

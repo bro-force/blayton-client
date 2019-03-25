@@ -1,9 +1,12 @@
 import React, { useCallback } from 'react'
 
+import uniqid from 'uniqid'
+
 import ImagePreview from '../components/image-preview'
 import ImageFilterPreview from '../components/image-filter-preview'
 
 import { useStateValue } from '../state-provider'
+import firebase, { storageRef } from '../firebase'
 import './image-upload.css'
 
 function ImageUpload(props) {
@@ -30,7 +33,12 @@ function ImageUpload(props) {
   const complete = useCallback((event) => {
     event.preventDefault()
 
-    dispatch({ type: 'COMPLETE_UPLOAD' })
+    const ref = storageRef.child(`images/${state.user.id}/${uniqid()}.jpg`)
+    const uploadTask = ref.putString(state.finalImage, 'data_url')
+
+    uploadTask.on('state_changed', console.log, null, () => {
+      dispatch({ type: 'COMPLETE_UPLOAD' })
+    })
   })
 
   return (
