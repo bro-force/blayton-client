@@ -40,11 +40,9 @@ function Filter({
       </span>
 
       <div
-        className={classNames({
-          "filter-preview__image-wrapper": true,
-        })}
+        className="filter-preview__image-wrapper"
+        style={{ backgroundImage: `url(${processedImage})`}}
       >
-        <img src={processedImage} />
       </div>
     </div>
   )

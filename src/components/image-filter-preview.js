@@ -14,8 +14,10 @@ function ImageFilterPreview(props) {
 
   return (
     <section className="filter-preview">
-      <div className="filter-preview__selected">
-        <img src={state.finalImage} />
+      <div
+        className="filter-preview__selected"
+        style={{ backgroundImage: `url(${state.finalImage})`}}
+      >
       </div>
 
       <div className="filter-preview__filters">
