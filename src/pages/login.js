@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { navigate } from '@reach/router'
 
@@ -15,10 +15,19 @@ function Login(props) {
   const loginWithGithub = () => {
     firebase.auth().signInWithPopup(githubProvider)
       .then(result => {
+        window.localStorage.setItem('user', JSON.stringify(result.user))
         dispatch({ type: 'GOT_USER', payload: result.user })
+
         navigate('/')
       })
   }
+
+  useEffect(() => {
+    if (state.user !== null) {
+      navigate('/')
+    }
+  }, [ state.user ])
+
 
   return (
     <section className="login">

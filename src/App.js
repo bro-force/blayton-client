@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 
 import { Router, Link } from '@reach/router'
 
@@ -9,7 +9,7 @@ import { StateProvider } from './state-provider'
 import './App.css';
 
 const initialState = {
-  user: null
+  user: JSON.parse(window.localStorage.getItem('user'))
 }
 
 function reducer(state, action) {
