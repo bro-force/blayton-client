@@ -1,3 +1,4 @@
+
 const createImage = url =>
   new Promise((resolve, reject) => {
     const image = new Image()
@@ -15,10 +16,8 @@ const createImage = url =>
 export default async function getCroppedImg(imageSrc, pixelCrop) {
   const image = await createImage(imageSrc)
   const canvas = document.createElement('canvas')
-
   canvas.width = pixelCrop.width
   canvas.height = pixelCrop.height
-
   const ctx = canvas.getContext('2d')
 
   ctx.drawImage(
@@ -33,7 +32,7 @@ export default async function getCroppedImg(imageSrc, pixelCrop) {
     pixelCrop.height
   )
 
-  // As Base64 string
+  // As Base64 string 
   return canvas.toDataURL('image/jpeg');
 
   // As a blob
