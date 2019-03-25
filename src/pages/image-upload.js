@@ -6,7 +6,7 @@ import ImagePreview from '../components/image-preview'
 import ImageFilterPreview from '../components/image-filter-preview'
 
 import { useStateValue } from '../state-provider'
-import firebase, { storageRef } from '../firebase'
+import firebase, { storageRef, database } from '../firebase'
 import './image-upload.css'
 
 function ImageUpload(props) {
@@ -33,10 +33,23 @@ function ImageUpload(props) {
   const complete = useCallback((event) => {
     event.preventDefault()
 
-    const ref = storageRef.child(`images/${state.user.id}/${uniqid()}.jpg`)
-    const uploadTask = ref.putString(state.finalImage, 'data_url')
+    const postId = uniqid('post:')
+    const imagePath = `images/${state.user.uid}/${uniqid()}.jpg`
+    const ref = storageRef.child(imagePath)
+    const uploadTask = ref.putString(state.croppedImage, 'data_url')
 
     uploadTask.on('state_changed', console.log, null, () => {
+      const payload = {
+        userId: state.user.uid,
+        displayName: state.user.displayName,
+        userPhoto: state.user.photoURL,
+        userEmail: state.user.email,
+        image: imagePath
+      }
+
+      database.ref(`posts/user:${state.user.uid}/${postId}`).set(payload)
+      database.ref(`feed/${postId}`).set(payload)
+
       dispatch({ type: 'COMPLETE_UPLOAD' })
     })
   })
