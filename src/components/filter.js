@@ -46,7 +46,6 @@ function Filter({
                 processedImage={(src, err) => {
                   setLoading(false)
                   setProcessedImage(src)
-                  alert(err)
                 }}
                 {...props}
               />

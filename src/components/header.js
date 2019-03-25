@@ -21,13 +21,15 @@ function Header(props) {
         img.src = e.target.result
 
         img.onload = function() {
+          // Use EXIF to read the correct orientation
           EXIF.getData(img, function() {
             const orientation = EXIF.getTag(this, 'Orientation')
             const canvas =
+              // Use loadImage to scale and set the correct orientation
               loadImage.scale(img, {
                 orientation: orientation || 0,
                 canvas: true,
-                maxWidth: 3000
+                maxWidth: 1000 // maximum safe value for iOS
               })
 
             const dataUrl = canvas.toDataURL('image/jpg')
@@ -35,8 +37,7 @@ function Header(props) {
             dispatch({ type: 'GOT_IMAGE', payload: dataUrl })
           })
         }
-
-      };
+      }
 
       reader.readAsDataURL(event.target.files[0]);
     }

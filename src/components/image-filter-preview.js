@@ -18,6 +18,15 @@ function ImageFilterPreview(props) {
       <div className="filter-preview__selected">
         <img src={state.finalImage} />
       </div>
+
+      <div className="filter-preview__filters">
+        <Filter
+          image={state.croppedImage}
+          sepia
+          name="Sépia"
+          onSelect={onSelect}
+        />
+      </div>
     </section>
   )
 }
