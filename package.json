@@ -9,6 +9,7 @@
     "modernizr": "^3.7.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-easy-crop": "^1.9.1",
     "react-multimedia-capture": "^1.2.3",
     "react-scripts": "2.1.8"
   },

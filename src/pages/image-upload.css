@@ -1,0 +1,25 @@
+.image-upload {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+
+.image-upload__nav {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.image-upload__nav-button {
+  text-decoration: none;
+}

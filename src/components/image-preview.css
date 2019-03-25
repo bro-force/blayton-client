@@ -1,0 +1,12 @@
+.image-preview {
+  position: absolute;
+  top: 40px;
+  height: calc(100% - 40px);
+  width: 100%;
+  background-color: #fff;
+}
+
+.image-preview__cropper-wrapper {
+  position: relative;
+  height: 100%;
+}

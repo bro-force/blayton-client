@@ -6,6 +6,9 @@ import { useStateValue } from '../state-provider'
 
 import Header from '../components/header'
 import Picture from '../components/picture'
+import ImageUpload from './image-upload'
+
+import placeholder from '../assets/placeholder.jpeg'
 
 import './feed.css'
 
@@ -28,8 +31,12 @@ function Feed(props) {
     <div className="feed">
       <Header />
       <div className="container">
-        <Picture image={state.imageToUpload} />
+        <Picture />
       </div>
+
+      { state.imageToUpload && (
+        <ImageUpload image={state.imageToUpload} />
+      )}
     </div>
   )
 }
