@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "blueimp-load-image": "^2.20.1",
     "classnames": "^2.2.6",
     "dotenv": "^7.0.0",
+    "exif-js": "^2.3.0",
     "firebase": "^5.9.1",
     "modernizr": "^3.7.1",
     "react": "^16.8.5",
