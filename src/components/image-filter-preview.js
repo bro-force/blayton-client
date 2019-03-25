@@ -28,12 +28,12 @@ function ImageFilterPreview(props) {
           onSelect={onSelect}
         />
 
-        <Filter
-          image={state.croppedImage}
-          name="Clarendon"
-          filter="clarendon"
-          onSelect={onSelect}
-        />
+        {/* <Filter */}
+        {/*   image={state.croppedImage} */}
+        {/*   name="Clarendon" */}
+        {/*   filter="clarendon" */}
+        {/*   onSelect={onSelect} */}
+        {/* /> */}
 
         <Filter
           image={state.croppedImage}
