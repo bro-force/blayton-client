@@ -69,7 +69,7 @@ function ImageUpload(props) {
           </a>
         )}
 
-        { state.uploadStep > 1 && state.uploadStep <= 3 && (
+        { state.uploadStep > 1 && state.uploadStep <= 2 && (
           <a
             className="image-upload__nav-button"
             onClick={previousStep}
@@ -79,7 +79,7 @@ function ImageUpload(props) {
           </a>
         )}
 
-        { state.uploadStep > 0 && state.uploadStep < 3 && (
+        { state.uploadStep > 0 && state.uploadStep < 2 && (
           <a
             className="image-upload__nav-button"
             onClick={nextStep}
@@ -89,7 +89,7 @@ function ImageUpload(props) {
           </a>
         )}
 
-        { state.uploadStep === 3 && (
+        { state.uploadStep === 2 && (
           <a
             className="image-upload__nav-button"
             onClick={complete}
