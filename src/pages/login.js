@@ -13,22 +13,28 @@ function Login(props) {
   const [ state, dispatch ] = useStateValue()
 
   const loginWithGithub = useCallback(() => {
-    firebase.auth().signInWithPopup(githubProvider)
-      .then(result => {
-        window.localStorage.setItem('user', JSON.stringify(result.user))
-        dispatch({ type: 'GOT_USER', payload: result.user })
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        firebase.auth().signInWithPopup(githubProvider)
+          .then(result => {
+            window.localStorage.setItem('user', JSON.stringify(result.user))
+            dispatch({ type: 'GOT_USER', payload: result.user })
 
-        navigate('/')
+            navigate('/')
+          })
       })
   }, [])
 
   const loginWithFacebook = useCallback(() => {
-    firebase.auth().signInWithPopup(facebookProvider)
-      .then(result => {
-        window.localStorage.setItem('user', JSON.stringify(result.user))
-        dispatch({ type: 'GOT_USER', payload: result.user })
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        firebase.auth().signInWithPopup(facebookProvider)
+          .then(result => {
+            window.localStorage.setItem('user', JSON.stringify(result.user))
+            dispatch({ type: 'GOT_USER', payload: result.user })
 
-        navigate('/')
+            navigate('/')
+          })
       })
   })
 

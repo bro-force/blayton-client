@@ -17,9 +17,13 @@ function Feed(props) {
   const [ state, dispatch ] = useStateValue()
 
   useEffect(() => {
-    if (state.user === null) {
-      navigate('/login')
-    }
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        dispatch({ type: 'GOT_USER', payload: user })
+      } else {
+        navigate('/login')
+      }
+    })
   }, [ state.user ])
 
   useEffect(() => {

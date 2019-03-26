@@ -16,7 +16,7 @@ const eventCoords = {
 }
 
 const initialState = {
-  user: JSON.parse(window.localStorage.getItem('user')),
+  user: null,
   geolocationSupport: window.navigator.geolocation !== null,
   coords: {},
   eventCoords,
