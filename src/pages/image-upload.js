@@ -45,7 +45,8 @@ function ImageUpload(props) {
         displayName: state.user.displayName,
         userPhoto: state.user.photoURL,
         userEmail: state.user.email,
-        image: imagePath
+        image: imagePath,
+        createdAt: Date.now()
       }
 
       database.ref(`posts/user:${state.user.uid}/${postId}`).set(payload)

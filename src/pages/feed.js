@@ -27,13 +27,17 @@ function Feed(props) {
       dispatch({ type: 'GOT_COORDS', payload: coords })
     })
 
-    database.ref('feed').once('value', function(snapshot) {
-      if (snapshot.val()) {
-        const items = Object.values(snapshot.val())
-        dispatch({ type: 'GOT_FEED', payload: items })
-      }
-    })
-  }, [])
+    database
+      .ref('feed')
+      .orderByChild('createdAt')
+      .limitToLast(10)
+      .once('value', function(snapshot) {
+        if (snapshot.val()) {
+          const items = Object.values(snapshot.val()).reverse()
+          dispatch({ type: 'GOT_FEED', payload: items })
+        }
+      })
+  }, [ state.imageToUpload ])
 
   return (
     <div className="feed">
