@@ -16,6 +16,8 @@ export default firebase
 export const database = firebase.database()
 
 export const githubProvider = new firebase.auth.GithubAuthProvider()
+export const facebookProvider = new firebase.auth.FacebookAuthProvider();
+
 githubProvider.addScope('user')
 
 export const storageRef = firebase.storage().ref()

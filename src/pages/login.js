@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 
 import { navigate } from '@reach/router'
 
 import { useStateValue } from '../state-provider'
-import firebase, { githubProvider } from '../firebase'
+import firebase, { githubProvider, facebookProvider } from '../firebase'
 
 import logo from '../assets/logo.svg'
 import './login.css'
@@ -12,7 +12,7 @@ import './login.css'
 function Login(props) {
   const [ state, dispatch ] = useStateValue()
 
-  const loginWithGithub = () => {
+  const loginWithGithub = useCallback(() => {
     firebase.auth().signInWithPopup(githubProvider)
       .then(result => {
         window.localStorage.setItem('user', JSON.stringify(result.user))
@@ -20,7 +20,17 @@ function Login(props) {
 
         navigate('/')
       })
-  }
+  }, [])
+
+  const loginWithFacebook = useCallback(() => {
+    firebase.auth().signInWithPopup(facebookProvider)
+      .then(result => {
+        window.localStorage.setItem('user', JSON.stringify(result.user))
+        dispatch({ type: 'GOT_USER', payload: result.user })
+
+        navigate('/')
+      })
+  })
 
   useEffect(() => {
     if (state.user !== null) {
@@ -44,11 +54,10 @@ function Login(props) {
         </div>
 
         <div className="login__options">
-          <button className="button">
-            Entrar com Instagram
-          </button>
-
-          <button className="button">
+          <button
+            className="button"
+            onClick={loginWithFacebook}
+          >
             Entrar com Facebook
           </button>
 
