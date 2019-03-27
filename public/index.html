@@ -40,5 +40,12 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script type="text/javascript" src="%PUBLIC_URL%/filterous2.min.js"></script>
+    <script>
+      var iOS = !!navigator.platform && /iPhone/.test(navigator.platform);
+
+      if (iOS) {
+        document.querySelector('link[rel="manifest"]').setAttribute("rel", "no-on-ios")
+      }
+    </script>
   </body>
 </html>
