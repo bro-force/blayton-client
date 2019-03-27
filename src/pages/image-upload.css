@@ -1,5 +1,5 @@
 .image-upload {
-  position: absolute;
+  position: fixed;
   top: 0;
   height: 100%;
   width: 100%;
@@ -22,4 +22,10 @@
 
 .image-upload__nav-button {
   text-decoration: none;
+}
+
+.image-upload__spinner {
+  position: absolute;
+  top: calc(50% - 11px);
+  left: calc(50% - 11px);
 }

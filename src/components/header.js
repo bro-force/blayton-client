@@ -14,6 +14,8 @@ function Header(props) {
 
   const onFileSelected = (event) => {
     if (event.target.files && event.target.files[0]) {
+      dispatch({ type: 'START_UPLOADING' })
+
       const reader = new FileReader()
 
       reader.onload = function (e) {

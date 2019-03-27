@@ -112,6 +112,14 @@ function ImageUpload(props) {
         )}
       </div>
 
+      { !props.image && (
+        <Spinner
+          name="circle"
+          fadeIn="none"
+          className="image-upload__spinner"
+        />
+      )}
+
       <div className="image-preview__content">
         { state.uploadStep === 1 && (
           <ImagePreview image={state.imageToUpload} />

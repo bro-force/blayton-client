@@ -55,7 +55,7 @@ function Feed(props) {
         ))}
       </div>
 
-      { state.imageToUpload && (
+      { state.uploading && (
         <ImageUpload image={state.imageToUpload} />
       )}
     </div>

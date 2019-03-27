@@ -54,6 +54,7 @@ function reducer(state, action) {
       return {
         ...state,
         uploadStep: 0,
+        uploading: false,
         imageToUpload: null,
         croppedImage: null,
         croppedAreaPixels: null
@@ -66,6 +67,7 @@ function reducer(state, action) {
       return {
         ...state,
         uploadStep: 0,
+        uploading: false,
         imageToUpload: null,
         croppedImage: null,
         croppedAreaPixels: null
@@ -74,6 +76,8 @@ function reducer(state, action) {
       return { ...state, finalImage: action.payload }
     case 'GOT_FEED':
       return { ...state, feed: action.payload }
+    case 'START_UPLOADING':
+      return { ...state, uploading: true }
     default:
       return state
   }
