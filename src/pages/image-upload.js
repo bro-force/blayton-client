@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import uniqid from 'uniqid'
+import Spinner from 'react-spinkit'
 
 import ImagePreview from '../components/image-preview'
 import ImageFilterPreview from '../components/image-filter-preview'
@@ -10,6 +11,7 @@ import firebase, { storageRef, database } from '../firebase'
 import './image-upload.css'
 
 function ImageUpload(props) {
+  const [ loading, setLoading ] = useState(false)
   const [ state, dispatch ] = useStateValue()
 
   const cancel = useCallback((event) => {
@@ -33,14 +35,14 @@ function ImageUpload(props) {
   const complete = useCallback((event) => {
     event.preventDefault()
 
+    setLoading(true)
+
     const postId = uniqid('post:')
     const imagePath = `images/${state.user.uid}/${uniqid()}.jpg`
     const ref = storageRef.child(imagePath)
     const uploadTask = ref.putString(state.croppedImage, 'data_url')
 
-    uploadTask.then(console.log)
-
-    uploadTask.on('state_changed', console.log, null, async () => {
+    uploadTask.on('state_changed', null, () => setLoading(false), async () => {
       const imageUrl = await storageRef.child(imagePath).getDownloadURL()
 
       const payload = {
@@ -57,6 +59,7 @@ function ImageUpload(props) {
       database.ref(`posts/user:${state.user.uid}/${postId}`).set(payload)
       database.ref(`feed/${postId}`).set(payload)
 
+      setLoading(false)
       dispatch({ type: 'COMPLETE_UPLOAD' })
     })
   })
@@ -94,7 +97,7 @@ function ImageUpload(props) {
           </a>
         )}
 
-        { state.uploadStep === 2 && (
+        { state.uploadStep === 2 && !loading && (
           <a
             className="image-upload__nav-button"
             onClick={complete}
@@ -102,6 +105,10 @@ function ImageUpload(props) {
           >
             Postar
           </a>
+        )}
+
+        { state.uploadStep === 2 && loading && (
+          <Spinner name='circle' fadeIn="none" />
         )}
       </div>
 
