@@ -3,13 +3,11 @@ import React, { useEffect } from 'react'
 import { navigate } from '@reach/router'
 
 import { useStateValue } from '../state-provider'
-import firebase, { storageRef, database } from '../firebase'
+import firebase, { database } from '../firebase'
 
 import Header from '../components/header'
 import Picture from '../components/picture'
 import ImageUpload from './image-upload'
-
-import placeholder from '../assets/placeholder.jpeg'
 
 import './feed.css'
 

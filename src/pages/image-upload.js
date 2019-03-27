@@ -7,7 +7,7 @@ import ImagePreview from '../components/image-preview'
 import ImageFilterPreview from '../components/image-filter-preview'
 
 import { useStateValue } from '../state-provider'
-import firebase, { storageRef, database } from '../firebase'
+import { storageRef, database } from '../firebase'
 import './image-upload.css'
 
 function ImageUpload(props) {
@@ -68,43 +68,39 @@ function ImageUpload(props) {
     <section className="image-upload">
       <div className="image-upload__nav">
         { state.uploadStep === 1 && (
-          <a
+          <button
             className="image-upload__nav-button"
             onClick={cancel}
-            href="#"
           >
             Cancelar
-          </a>
+          </button>
         )}
 
         { state.uploadStep > 1 && state.uploadStep <= 2 && (
-          <a
+          <button
             className="image-upload__nav-button"
             onClick={previousStep}
-            href="#"
           >
             Voltar
-          </a>
+          </button>
         )}
 
         { state.uploadStep > 0 && state.uploadStep < 2 && (
-          <a
+          <button
             className="image-upload__nav-button"
             onClick={nextStep}
-            href="#"
           >
             Próximo
-          </a>
+          </button>
         )}
 
         { state.uploadStep === 2 && !loading && (
-          <a
+          <button
             className="image-upload__nav-button"
             onClick={complete}
-            href="#"
           >
             Postar
-          </a>
+          </button>
         )}
 
         { state.uploadStep === 2 && loading && (

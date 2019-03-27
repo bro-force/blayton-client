@@ -1,9 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
-import ProcessImage from 'react-imgpro'
-import Spinner from 'react-spinkit'
-import classNames from 'classnames'
-
 function Filter({
   name,
   image,
@@ -11,7 +7,6 @@ function Filter({
   filter = 'valencia',
   ...props
 }) {
-  const [ loading, setLoading ] = useState(!normal)
   const [ processedImage, setProcessedImage ] = useState(image)
 
   const handleSelect = useCallback(() => {

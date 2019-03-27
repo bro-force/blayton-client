@@ -2,8 +2,6 @@
 function distance(event, currentPosition) {
   var radlat1 = Math.PI * event.latitude / 180
   var radlat2 = Math.PI * currentPosition.latitude / 180
-  var radlon1 = Math.PI * event.longitude / 180
-  var radlon2 = Math.PI * currentPosition.longitude / 180
 
   var theta = event.longitude - currentPosition.longitude
   var radtheta = Math.PI * theta/180

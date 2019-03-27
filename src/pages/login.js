@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { navigate } from '@reach/router'
 import Spinner from 'react-spinkit'
@@ -33,9 +33,9 @@ function Login(props) {
 
         dispatch({ type: 'GOT_USER', payload: user })
         navigate('/')
-      } catch (error) {
+      } catch (err) {
         setLoading(false)
-        setError(error)
+        setError(err)
       }
     }
   }
@@ -54,6 +54,7 @@ function Login(props) {
         <div className="login__logo">
           <img
             src={logo}
+            alt="Blayton logo"
             className="login__logo-image"
           />
 

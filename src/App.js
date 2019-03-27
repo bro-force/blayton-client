@@ -1,6 +1,6 @@
-import React, { Component, useEffect } from 'react'
+import React from 'react'
 
-import { Router, Link } from '@reach/router'
+import { Router } from '@reach/router'
 
 import Feed from './pages/feed'
 import Login from './pages/login'

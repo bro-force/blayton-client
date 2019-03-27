@@ -28,6 +28,7 @@ function Picture(props) {
 
       <img
         src={props.imageUrl || image}
+        alt={`Foto de ${props.displayName}`}
         className="picture__image"
       />
 

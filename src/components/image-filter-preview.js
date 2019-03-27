@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback } from 'react'
 
 import Filter from '../components/filter'
 import { useStateValue } from '../state-provider'

@@ -8,6 +8,7 @@ function PictureOwner(props) {
       <img
         src={props.photo}
         className="picture-owner__image"
+        alt={props.name}
       />
       <h4 className="picture-owner__name">{ props.name }</h4>
     </div>
