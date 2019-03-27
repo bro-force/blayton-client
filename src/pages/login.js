@@ -1,42 +1,44 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 
 import { navigate } from '@reach/router'
+import Spinner from 'react-spinkit'
 
 import { useStateValue } from '../state-provider'
-import firebase, { githubProvider, facebookProvider } from '../firebase'
+import firebase, { providers } from '../firebase'
 
 import logo from '../assets/logo.svg'
 import './login.css'
 
 
 function Login(props) {
+  const [ loading, setLoading ] = useState(false)
+  const [ error, setError ] = useState()
   const [ state, dispatch ] = useStateValue()
 
-  const loginWithGithub = useCallback(() => {
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-      .then(() => {
-        firebase.auth().signInWithPopup(githubProvider)
-          .then(result => {
-            window.localStorage.setItem('user', JSON.stringify(result.user))
-            dispatch({ type: 'GOT_USER', payload: result.user })
+  const loginWith = providerName => async () => {
+    const provider = providers[providerName]
 
-            navigate('/')
-          })
-      })
-  }, [])
+    setLoading(true)
 
-  const loginWithFacebook = useCallback(() => {
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-      .then(() => {
-        firebase.auth().signInWithPopup(facebookProvider)
-          .then(result => {
-            window.localStorage.setItem('user', JSON.stringify(result.user))
-            dispatch({ type: 'GOT_USER', payload: result.user })
+    if (provider) {
+      await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 
-            navigate('/')
-          })
-      })
-  })
+      try {
+        const { user } = await firebase.auth().signInWithPopup(provider)
+
+        setLoading(false)
+        setError(null)
+
+        window.localStorage.setItem('user', JSON.stringify(user))
+
+        dispatch({ type: 'GOT_USER', payload: user })
+        navigate('/')
+      } catch (error) {
+        setLoading(false)
+        setError(error)
+      }
+    }
+  }
 
   useEffect(() => {
     if (state.user !== null) {
@@ -48,6 +50,7 @@ function Login(props) {
   return (
     <section className="login">
       <div className="login__content">
+
         <div className="login__logo">
           <img
             src={logo}
@@ -59,21 +62,28 @@ function Login(props) {
           </h4>
         </div>
 
-        <div className="login__options">
-          <button
-            className="button"
-            onClick={loginWithFacebook}
-          >
-            Entrar com Facebook
-          </button>
+        { loading && (
+          <Spinner name='circle' />
+        )}
 
-          <button
-            className="button"
-            onClick={loginWithGithub}
-          >
-            Entrar com Github
-          </button>
-        </div>
+
+        { !loading && (
+          <div className="login__options">
+            <button
+              className="button"
+              onClick={loginWith('facebook')}
+            >
+              Entrar com Facebook
+            </button>
+
+            <button
+              className="button"
+              onClick={loginWith('github')}
+            >
+              Entrar com Github
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )

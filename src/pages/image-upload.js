@@ -38,7 +38,11 @@ function ImageUpload(props) {
     const ref = storageRef.child(imagePath)
     const uploadTask = ref.putString(state.croppedImage, 'data_url')
 
-    uploadTask.on('state_changed', console.log, null, () => {
+    uploadTask.then(console.log)
+
+    uploadTask.on('state_changed', console.log, null, async () => {
+      const imageUrl = await storageRef.child(imagePath).getDownloadURL()
+
       const payload = {
         id: postId,
         userId: state.user.uid,
@@ -46,7 +50,8 @@ function ImageUpload(props) {
         userPhoto: state.user.photoURL,
         userEmail: state.user.email,
         image: imagePath,
-        createdAt: Date.now()
+        createdAt: Date.now(),
+        imageUrl
       }
 
       database.ref(`posts/user:${state.user.uid}/${postId}`).set(payload)

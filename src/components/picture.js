@@ -11,10 +11,12 @@ function Picture(props) {
   const [ image, setImage ] = useState('')
 
   useEffect(() => {
-    storageRef
-      .child(props.image)
-      .getDownloadURL()
-      .then(setImage)
+    if (!props.imageUrl) {
+      storageRef
+        .child(props.image)
+        .getDownloadURL()
+        .then(setImage)
+    }
   }, [])
 
   return (
@@ -25,7 +27,7 @@ function Picture(props) {
       />
 
       <img
-        src={image}
+        src={props.imageUrl || image}
         className="picture__image"
       />
 

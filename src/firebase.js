@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-const config = {
+export const config = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "blayton-47621.firebaseapp.com",
   databaseURL: "https://blayton-47621.firebaseio.com",
@@ -21,3 +21,8 @@ export const facebookProvider = new firebase.auth.FacebookAuthProvider();
 githubProvider.addScope('user')
 
 export const storageRef = firebase.storage().ref()
+
+export const providers = {
+  github: githubProvider,
+  facebook: facebookProvider
+}
