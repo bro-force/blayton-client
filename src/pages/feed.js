@@ -36,6 +36,8 @@ function Feed(props) {
       .once('value', function(snapshot) {
         if (snapshot.val()) {
           const items = Object.values(snapshot.val()).reverse()
+          localStorage.setItem('feed', JSON.stringify(items))
+
           dispatch({ type: 'GOT_FEED', payload: items })
         }
       })
