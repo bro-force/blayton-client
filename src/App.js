@@ -15,8 +15,6 @@ const eventCoords = {
   longitude: process.env.REACT_APP_EVENT_LONGITUDE
 }
 
-const cachedFeed = localStorage.getItem('feed')
-
 const initialState = {
   user: null,
   geolocationSupport: window.navigator.geolocation !== null,
@@ -25,7 +23,11 @@ const initialState = {
   distance: null,
   croppedImage: null,
   uploadStep: 0,
-  feed: cachedFeed ? JSON.parse(cachedFeed) : []
+  feed: {
+    loading: true,
+    items: [],
+    error: null
+  }
 }
 
 function reducer(state, action) {
@@ -77,7 +79,7 @@ function reducer(state, action) {
     case 'GOT_FINAL_IMAGE':
       return { ...state, finalImage: action.payload }
     case 'GOT_FEED':
-      return { ...state, feed: action.payload }
+      return { ...state, feed: { ...state.feed, loading: false, items: action.payload } }
     case 'START_UPLOADING':
       return { ...state, uploading: true }
     default:

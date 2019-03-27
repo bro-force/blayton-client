@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { navigate } from '@reach/router'
+import Spinner from 'react-spinkit'
 
 import { useStateValue } from '../state-provider'
 import firebase, { database } from '../firebase'
@@ -36,7 +37,6 @@ function Feed(props) {
       .once('value', function(snapshot) {
         if (snapshot.val()) {
           const items = Object.values(snapshot.val()).reverse()
-          localStorage.setItem('feed', JSON.stringify(items))
 
           dispatch({ type: 'GOT_FEED', payload: items })
         }
@@ -47,12 +47,16 @@ function Feed(props) {
     <div className="feed">
       <Header />
       <div className="container">
-        { state.feed.map(item => (
+        { !state.feed.loading && state.feed.items.map(item => (
           <Picture
             key={item.id}
             {...item}
           />
         ))}
+
+        { state.feed.loading && (
+          <Spinner className="feed__spinner" name="circle" fadeIn="none" />
+        )}
       </div>
 
       { state.uploading && (

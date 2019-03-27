@@ -3,3 +3,9 @@
   margin: 0 auto;
   padding-top: 1em;
 }
+
+.feed__spinner {
+  position: absolute;
+  top: calc(50% - 11px);
+  left: calc(50% - 11px);
+}
