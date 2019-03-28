@@ -21,7 +21,8 @@
     "react-slick": "^0.23.2",
     "react-spinkit": "^3.0.0",
     "slick-carousel": "^1.8.1",
-    "uniqid": "^5.0.3"
+    "uniqid": "^5.0.3",
+    "use-debounce": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

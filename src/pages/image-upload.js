@@ -7,7 +7,7 @@ import ImagePreview from '../components/image-preview'
 import ImageFilterPreview from '../components/image-filter-preview'
 
 import { useStateValue } from '../state-provider'
-import { storageRef, database } from '../firebase'
+import { storageRef, database, db } from '../firebase'
 import './image-upload.css'
 
 function ImageUpload(props) {
@@ -58,6 +58,8 @@ function ImageUpload(props) {
 
       database.ref(`posts/user:${state.user.uid}/${postId}`).set(payload)
       database.ref(`feed/${postId}`).set(payload)
+
+      db.collection("posts").doc(postId).set(payload)
 
       setLoading(false)
       dispatch({ type: 'COMPLETE_UPLOAD' })

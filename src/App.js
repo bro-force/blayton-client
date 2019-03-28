@@ -26,7 +26,9 @@ const initialState = {
   feed: {
     loading: true,
     items: [],
-    error: null
+    error: null,
+    lastVisible: null,
+    haveNext: true
   }
 }
 
@@ -79,7 +81,27 @@ function reducer(state, action) {
     case 'GOT_FINAL_IMAGE':
       return { ...state, finalImage: action.payload }
     case 'GOT_FEED':
-      return { ...state, feed: { ...state.feed, loading: false, items: action.payload } }
+      return {
+        ...state,
+        feed: {
+          ...state.feed,
+          loading: false,
+          items: action.posts,
+          lastVisible: action.lastVisible,
+          haveNext: action.posts.length > 0
+        }
+      }
+    case 'GOT_MORE_POSTS':
+      return {
+        ...state,
+        feed: {
+          ...state.feed,
+          loading: false,
+          items: [ ...state.feed.items, ...action.posts ],
+          lastVisible: action.lastVisible,
+          haveNext: action.posts.length > 0
+        }
+      }
     case 'START_UPLOADING':
       return { ...state, uploading: true }
     default:
