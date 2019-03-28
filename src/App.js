@@ -5,6 +5,7 @@ import { Router } from '@reach/router'
 import Feed from './pages/feed'
 import Login from './pages/login'
 import distance from './helpers/distance'
+import uniqBy from 'lodash/uniqBy'
 
 import { StateProvider } from './state-provider'
 

@@ -41,6 +41,16 @@ function Feed(props) {
 
           dispatch({ type: 'GOT_MORE_POSTS', posts, lastVisible })
         })
+    } else if (window.scrollY == 0) {
+      db.collection('posts').orderBy('createdAt', 'desc').limit(PAGE_SIZE).get()
+        .then(snapshot => {
+          const lastVisible = snapshot.docs[snapshot.docs.length - 1]
+          let posts = []
+
+          snapshot.forEach(doc => posts.push(doc.data()))
+
+          dispatch({ type: 'GOT_FEED', posts, lastVisible })
+        })
     }
   }, 1000, [ state.feed.lastVisible ])
 
