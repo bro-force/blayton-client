@@ -24,7 +24,7 @@ function Login(props) {
       await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 
       try {
-        const { user } = await firebase.auth().signInWithPopup(provider)
+        const { user } = await firebase.auth().signInWithRedirect(provider)
 
         setLoading(false)
         setError(null)
