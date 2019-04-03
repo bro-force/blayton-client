@@ -7,7 +7,7 @@ import { useStateValue } from '../state-provider'
 
 import './header.css'
 import logo from '../assets/logo.svg'
-import add from '../assets/add.svg'
+import add from '../assets/camera.svg'
 
 function Header(props) {
   const [ state, dispatch ] = useStateValue()

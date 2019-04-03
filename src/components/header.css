@@ -40,9 +40,10 @@
 }
 
 .header__add-icon {
-  height: 20px;
+  height: 25px;
   margin-top: 5px;
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .header__uploader {
