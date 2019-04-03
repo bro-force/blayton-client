@@ -13,7 +13,7 @@ import ImageUpload from './image-upload'
 
 import './feed.css'
 
-const PAGE_SIZE = 2
+const PAGE_SIZE = 15
 
 function getDocHeight() {
     var D = document;
