@@ -11,9 +11,22 @@ import './login.css'
 
 
 function Login(props) {
-  const [ loading, setLoading ] = useState(false)
+  const [ loading, setLoading ] = useState(true)
   const [ error, setError ] = useState()
   const [ state, dispatch ] = useStateValue()
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        dispatch({ type: 'GOT_USER', payload: user })
+        setLoading(false)
+      } else {
+        setLoading(false)
+        navigate('/login')
+      }
+    })
+  }, [ state.user ])
+
 
   const loginWith = providerName => async () => {
     const provider = providers[providerName]
@@ -64,7 +77,7 @@ function Login(props) {
         </div>
 
         { loading && (
-          <Spinner name='circle' />
+          <Spinner fadeIn="none" name="circle" />
         )}
 
 
