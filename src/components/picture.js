@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { storageRef } from '../firebase'
 
 import PictureOwner from './picture-owner'
-import PictureFooter from './picture-footer'
 
 import './picture.css'
 
@@ -31,8 +30,6 @@ function Picture(props) {
         alt={`Foto de ${props.displayName}`}
         className="picture__image"
       />
-
-      <PictureFooter />
     </div>
   )
 }
