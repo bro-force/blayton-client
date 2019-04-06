@@ -8,6 +8,7 @@ import PictureOwner from './picture-owner'
 import './picture.css'
 
 const PAGE_SIZE = 15
+const ADMIN_ID = 'BlVOhe0286PVPFp35LkRMNOrTRo1'
 
 function Picture(props) {
   const [ state, dispatch ] = useStateValue()
@@ -58,7 +59,7 @@ function Picture(props) {
         name={props.displayName}
         onDelete={deleteImage}
         deleting={deleting}
-        canDelete={state.user.uid === props.userId}
+        canDelete={state.user.uid === props.userId || state.user.id === ADMIN_ID}
       />
 
       <img
