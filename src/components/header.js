@@ -59,21 +59,23 @@ function Header(props) {
       </div>
 
       <div className="header__new">
-        <label htmlFor="uploader">
-          <img
-            src={add}
-            className="header__add-icon"
-            alt="Enviar foto"
-          />
-          <input
-            id="uploader"
-            className="header__uploader"
-            accept="image/*"
-            onChange={onFileSelected}
-            type="file"
-            capture
-          />
-        </label>
+        { state.distance && state.distance <= 15 && (
+          <label htmlFor="uploader">
+            <img
+              src={add}
+              className="header__add-icon"
+              alt="Enviar foto"
+            />
+            <input
+              id="uploader"
+              className="header__uploader"
+              accept="image/*"
+              onChange={onFileSelected}
+              type="file"
+              capture
+            />
+          </label>
+        )}
       </div>
     </header>
   )

@@ -65,9 +65,11 @@ function Feed(props) {
   }, [ state.user ])
 
   useEffect(() => {
-    window.navigator.geolocation.getCurrentPosition(({ coords }) => {
-      dispatch({ type: 'GOT_COORDS', payload: coords })
-    })
+    if (state.geolocationSupport) {
+      window.navigator.geolocation.getCurrentPosition(({ coords }) => {
+        dispatch({ type: 'GOT_COORDS', payload: coords })
+      })
+    }
 
     db.collection('posts').orderBy('createdAt', 'desc').limit(PAGE_SIZE).get()
       .then(snapshot => {
