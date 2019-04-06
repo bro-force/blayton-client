@@ -116,7 +116,7 @@ function Feed(props) {
         />
       )}
 
-      { !state.feed.loading && !state.feed.haveNext && (<div>Acabou</div>) }
+      { !state.feed.loading && !state.feed.haveNext && (<div></div>) }
 
       { state.uploading && (
         <ImageUpload image={state.imageToUpload} />
