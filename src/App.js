@@ -105,6 +105,17 @@ function reducer(state, action) {
       }
     case 'START_UPLOADING':
       return { ...state, uploading: true }
+    case 'DELETE_POST':
+      const newPosts =
+        state.feed.items.filter(item => item.id !== action.payload)
+
+      return {
+        ...state,
+        feed: {
+          ...state.feed,
+          items: newPosts
+        }
+      }
     default:
       return state
   }

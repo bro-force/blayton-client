@@ -16,3 +16,14 @@
 .picture-owner__name {
   margin-left: 10px;
 }
+
+.picture-owner__delete {
+  position: absolute;
+  width: 20px;
+  right: 20px;
+}
+
+.picture-owner__spinner {
+  position: absolute;
+  right: 20px;
+}

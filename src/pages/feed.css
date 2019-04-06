@@ -9,3 +9,11 @@
   top: calc(50% - 11px);
   left: calc(50% - 11px);
 }
+
+.feed__empty-state {
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+  color: #353535;
+  margin-top: 60px;
+}

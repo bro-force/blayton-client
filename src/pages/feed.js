@@ -100,6 +100,12 @@ function Feed(props) {
           />
         ))}
 
+        { !state.feed.loading && state.feed.items.length === 0 && (
+          <div className="feed__empty-state">
+            <h2>Ainda não temos fotos publicadas, seja o primeiro ;)</h2>
+          </div>
+        )}
+
         { state.feed.loading && (
           <Spinner className="feed__spinner" name="circle" fadeIn="none" />
         )}
